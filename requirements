@@ -1,0 +1,6 @@
+node
+nodemon
+express
+dotenv
+mongoose
+morgan
