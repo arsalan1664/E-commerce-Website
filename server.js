@@ -3,15 +3,19 @@ import dotevn from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoute from "./routes/authRoute.js"
+import cors from 'cors'
 
+const app = express();
 // config env
 dotevn.config();
+
+// cors
+app.use(cors());
 
 // coneect db
 connectDB()
 
-// rest object
-const app = express();
+
 
 // middleware
 app.use(express.json())

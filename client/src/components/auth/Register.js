@@ -5,6 +5,7 @@ import Layout from '../layout/Layout';
 import './Register.css'
 import {  useState } from 'react';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,6 +16,7 @@ export default function Register() {
     const [phone,setPhone] = useState('')
     const [address,setAddress] = useState('')
     const [open,setOpen] = useState(false)
+    const navigate = useNavigate()
 
     
    
@@ -23,10 +25,11 @@ export default function Register() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-          const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,passward,phone,address}
+          const res = await axios.post(`${process.env.REACT_APP_API}api/v1/auth/register`,{name,email,passward,phone,address}
           )
-          if(res.messege.success){
+          if(res.data.success){
             AlertClick() 
+            navigate('/login')
           }
         } catch (error) {
           console.log(error)
