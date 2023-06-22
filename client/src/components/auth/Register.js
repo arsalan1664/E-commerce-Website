@@ -1,11 +1,11 @@
 import TextField from '@mui/material/TextField';
-import { Alert, Box, Button, Collapse, IconButton, Snackbar  } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import {Box, Button,  } from '@mui/material';
 import Layout from '../layout/Layout';
 import './Register.css'
 import {  useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 
 
 
@@ -15,12 +15,10 @@ export default function Register() {
     const [passward,setPassward] = useState('')
     const [phone,setPhone] = useState('')
     const [address,setAddress] = useState('')
-    const [open,setOpen] = useState(false)
     const navigate = useNavigate()
 
     
    
-   const AlertClick = () => setOpen(true)
      
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -28,11 +26,12 @@ export default function Register() {
           const res = await axios.post(`${process.env.REACT_APP_API}api/v1/auth/register`,{name,email,passward,phone,address}
           )
           if(res.data.success){
-            AlertClick() 
+            
             navigate('/login')
           }
         } catch (error) {
           console.log(error)
+          toast('Something went wrong')
         }
 
 
@@ -118,30 +117,10 @@ export default function Register() {
 
         />
         <Button  onClick={ handleSubmit} type='submit' variant="contained" >Submit</Button>
-    
+        <Toaster/>
+        
         
       </div>
-        <Snackbar open={open}> 
-        <Collapse in={open}>
-        <Alert
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >
-          Register Successfully
-        </Alert>
-      </Collapse>
-        </Snackbar>
     </Box>
 
 
