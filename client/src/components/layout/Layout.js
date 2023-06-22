@@ -1,7 +1,6 @@
 import React from 'react'
-// import Header from './Header'
 import Footer from './Footer'
-import ResponsiveAppBar from './TopBar'
+import Header from './Header'
 
 
 function Layout({children}) {
@@ -9,7 +8,7 @@ function Layout({children}) {
     <div>
         
         {/* <Header/> */}
-        <ResponsiveAppBar/>
+        <Header/>
         <main style={{ minHeight:"70vh"}}>
             {children}
         </main>

@@ -117,7 +117,7 @@ export default function Register() {
           required
 
         />
-        <Button  onClick={handleSubmit} type='submit' variant="contained" >Submit</Button>
+        <Button  onClick={ handleSubmit} type='submit' variant="contained" >Submit</Button>
     
         
       </div>
